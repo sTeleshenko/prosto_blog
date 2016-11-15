@@ -1,0 +1,89 @@
+<md-content layout flex layout-align="center">
+    <!--<div flex="auto" flex-gt-sm="50">gfrvgfvfgvfgvfg</div>-->
+    <div flex-xs="100" flex="50">
+        <md-card>
+            <form name="vm.form" novalidate ng-submit="vm.submit()">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Регистрация</span>
+                    </md-card-title-text>
+                    <md-card-title-media>
+                        <div class="md-media-sm card-media">
+                            <img ng-src="{{vm.user.avatar ? vm.user.avatar : 'http://jc.infradapt.com/images/easyblog_images/4072/incognito_mode_400.jpg'}}">
+                        </div>
+                    </md-card-title-media>
+                </md-card-title>
+                <md-card-content>
+                    <md-input-container class="md-block">
+                        <label>Имя</label>
+                        <input type="text"
+                               name="name"
+                               required
+                               minlength="5"
+                               ng-model="vm.user.name">
+                        <div ng-messages="vm.form.name.$error">
+                            <div ng-message="required">Это обязательное поле</div>
+                            <div ng-message="minlength">Минимум 5 символов</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Путь к фото</label>
+                        <input type="text"
+                               name="avatar"
+                               required
+                               ng-pattern="/(https?:\/\/.*\.(?:png|jpg|jpeg|gif|png|svg))/"
+                               ng-model="vm.user.avatar">
+                        <div ng-messages="vm.form.avatar.$error">
+                            <div ng-message="required">Это обязательное поле</div>
+                            <div ng-message="pattern">Не коректный путь</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Email</label>
+                        <input type="email"
+                               name="email"
+                               required
+                               ng-model="vm.user.email">
+                        <div ng-messages="vm.form.email.$error">
+                            <div ng-message="required">Это обязательное поле</div>
+                            <div ng-message="email">Не валидный email</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Пароль</label>
+                        <input type="password"
+                               name="password"
+                               required
+                               minlength="5"
+                               ng-model="vm.user.password">
+                        <div ng-messages="vm.form.password.$error">
+                            <div ng-message="required">Это обязательное поле</div>
+                            <div ng-message="minlength">Минимум 5 символов</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Подтвердите пароль</label>
+                        <input type="password"
+                               name="confirmation"
+                               ng-pattern="vm.user.password"
+                               required
+                               minlength="5"
+                               ng-model="vm.user.confirmation">
+                        <div ng-messages="vm.form.confirmation.$error">
+                            <div ng-message="required">Пароли не совпадают</div>
+                            <div ng-message="pattern">Пароли не совпадают</div>
+                        </div>
+                    </md-input-container>
+                    <div class="errors">
+                        <p ng-show="vm.isRegistered">Пользователь с таким email уже зарегистрирован</p>
+                        <p ng-show="vm.error">Ошибка при регистрации</p>
+                    </div>
+                </md-card-content>
+
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button type="submit" ng-disabled="vm.form.$invalid" class="md-primary">Отправить</md-button>
+                </md-card-actions>
+            </form>
+        </md-card>
+    </div>
+</md-content>

@@ -1,0 +1,42 @@
+<md-sidenav
+        class="md-sidenav-left"
+        md-component-id="left"
+        md-is-locked-open="$mdMedia('gt-md')"
+        md-whiteframe="4">
+
+    <md-toolbar>
+        <h1 class="md-toolbar-tools">Просто блог</h1>
+    </md-toolbar>
+
+    <md-list>
+        <md-list-item class="md-2-line" ng-if="vm.Auth.isLoggedin">
+            <img ng-src="{{vm.Auth.user.avatar}}" class="md-avatar" alt="user" />
+            <div class="md-list-item-text">
+                <h3>{{ vm.Auth.user.name }}</h3>
+                <p>{{ vm.Auth.user.email }}</p>
+            </div>
+        </md-list-item>
+        <md-subheader>Категории</md-subheader>
+        <md-list-item ng-click="vm.$router.navigate(['Posts', {id: 'my'}])" ng-if="vm.Auth.isLoggedin">
+            <md-icon md-svg-src="assets/images/folded-newspaper.svg"></md-icon>
+            <p>Мои посты</p>
+        </md-list-item>
+        <md-list-item ng-click="vm.$router.navigate(['Posts', {id: ''}])">
+            <md-icon md-svg-src="assets/images/folded-newspaper.svg"></md-icon>
+            <p>Свежак</p>
+        </md-list-item>
+        <md-subheader>Действия</md-subheader>
+        <md-list-item ng-click="vm.$router.navigate(['Login'])" ng-if="!vm.Auth.isLoggedin">
+            <md-icon md-svg-src="assets/images/login.svg"></md-icon>
+            <p>Вход</p>
+        </md-list-item>
+        <md-list-item ng-click="vm.$router.navigate(['Register'])" ng-if="!vm.Auth.isLoggedin">
+            <md-icon md-svg-src="assets/images/user.svg"></md-icon>
+            <p>Регистрация</p>
+        </md-list-item>
+        <md-list-item ng-click="vm.logout()" ng-if="vm.Auth.isLoggedin">
+            <md-icon md-svg-src="assets/images/logout.svg"></md-icon>
+            <p>Выход</p>
+        </md-list-item>
+    </md-list>
+</md-sidenav>

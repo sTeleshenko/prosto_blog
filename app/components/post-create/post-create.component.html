@@ -1,0 +1,48 @@
+<md-toolbar>
+    <h2 class="md-toolbar-tools">Создание поста</h2>
+</md-toolbar>
+<form name="vm.form" ng-submit="vm.submit()">
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <md-input-container class="md-block">
+                <label>Название поста</label>
+                <input type="text" name="title" ng-model="vm.post.title" required minlength="10">
+                <div ng-messages="vm.form.title.$error">
+                    <div ng-message="required">Это обязательное поле</div>
+                    <div ng-message="minlength">Минимум 10 символов</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Категория</label>
+                <md-select ng-model="vm.post.categoryId" name="category" required>
+                    <md-option ng-repeat="category in vm.categories" ng-value="category.id">
+                        {{category.name}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Путь к фото</label>
+                <input type="text"
+                       name="image"
+                       required
+                       ng-pattern="/(https?:\/\/.*\.(?:png|jpg|jpeg|gif|png|svg))/"
+                       ng-model="vm.post.image">
+                <div ng-messages="vm.form.image.$error">
+                    <div ng-message="required">Это обязательное поле</div>
+                    <div ng-message="pattern">Не коректный путь</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Содержимое поста</label>
+                <textarea ng-model="vm.post.body" required name="body" minlength="20"></textarea>
+                <div ng-messages="vm.form.body.$error">
+                    <div ng-message="required">Это обязательное поле</div>
+                    <div ng-message="minlength">Минимум 20 символов</div>
+                </div>
+            </md-input-container>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout layout-align="end center">
+        <md-button type="submit">Создать</md-button>
+    </md-dialog-actions>
+</form>

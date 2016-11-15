@@ -1,0 +1,46 @@
+<md-content layout flex layout-align="center">
+    <!--<div flex="auto" flex-gt-sm="50">gfrvgfvfgvfgvfg</div>-->
+    <div flex-xs="100" flex="50">
+        <md-card>
+            <form name="vm.form" novalidate ng-submit="vm.submit()">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Вход</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <md-input-container class="md-block">
+                        <label>Email</label>
+                        <input type="email"
+                               name="email"
+                               required
+                               ng-model="vm.user.email">
+                        <div ng-messages="vm.form.email.$error">
+                            <div ng-message="required">Это обязательное поле</div>
+                            <div ng-message="email">Не валидный email</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Пароль</label>
+                        <input type="password"
+                               name="password"
+                               required
+                               minlength="5"
+                               ng-model="vm.user.password">
+                        <div ng-messages="vm.form.password.$error">
+                            <div ng-message="required">Это обязательное поле</div>
+                            <div ng-message="minlength">Минимум 5 символов</div>
+                        </div>
+                    </md-input-container>
+                    <div class="errors">
+                        <p ng-show="vm.error">Ошибка входа</p>
+                    </div>
+                </md-card-content>
+
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button type="submit" ng-disabled="vm.form.$invalid" class="md-primary">Войти</md-button>
+                </md-card-actions>
+            </form>
+        </md-card>
+    </div>
+</md-content>

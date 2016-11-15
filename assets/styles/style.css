@@ -1,0 +1,24 @@
+ng-outlet>*{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.animate {
+    opacity: 1;
+}
+.animate.ng-enter {
+    -webkit-transition: .3s;
+    transition: .3s;
+    opacity: 0;
+}
+.animate.ng-enter-active {
+    opacity: 1;
+}
+.errors{
+    color: #c60008;
+}
+md-dialog.md-dialog-fullscreen {
+    width: 90%;
+    max-width: 700px;
+    max-height: 90%;
+}
