@@ -1,0 +1,14 @@
+<md-button class="md-icon-button md-primary" aria-label="like"
+           ng-click="vm.Like.setLike(vm.post, true)"
+           ng-disabled="!vm.Auth.isLoggedin"
+           ng-class="{'md-raised': vm.post ? vm.Like.hasLike(vm.post, true) : false}">
+    <md-icon md-svg-src="assets/images/like.svg"></md-icon>
+</md-button>
+<span>{{(vm.post.likes | filter : {value: true}).length}}</span>
+<md-button class="md-icon-button md-warn" aria-label="dislike"
+           ng-click="vm.Like.setLike(vm.post, false)"
+           ng-disabled="!vm.Auth.isLoggedin"
+           ng-class="{'md-raised': vm.post ? vm.Like.hasLike(vm.post, false) : false}">
+    <md-icon md-svg-src="assets/images/dislike.svg"></md-icon>
+</md-button>
+<span>{{(vm.post.likes | filter : {value: false}).length}}</span>

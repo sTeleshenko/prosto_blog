@@ -23,7 +23,13 @@ app.component('registerComponent', {
             delete user.confirmation;
             Auth.register(user)
                 .then(function(response){
-                    vm.$router.navigate(['Posts', {id: ''}]);
+                    Auth.login(response.data.email, response.data.password)
+                        .then(function(){
+                            vm.$router.navigate(['Posts', {id: ''}]);
+                        })
+                        .catch(function(){
+                            vm.$router.navigate(['Login']);
+                        });
                 })
                 .catch(function(error){
                     vm.showErrorMessage(error);

@@ -11,6 +11,7 @@ app.component('homeComponent', {
     $routeConfig: [
         {path: '/:id', name: 'Posts', component: 'postsListComponent', useAsDefault: true},
         {path: '/register', name: 'Register', component: 'registerComponent'},
-        {path: '/login', name: 'Login', component: 'loginComponent'}
+        {path: '/login', name: 'Login', component: 'loginComponent'},
+        {path: '/post/:id', name: 'Post', component: 'postDetail'}
     ]
 });

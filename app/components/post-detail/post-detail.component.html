@@ -1,0 +1,51 @@
+<md-content flex layout>
+    <div layout-gt-sm="row" layout="column" flex flex-gt-md="80" flex-offset-gt-md="10">
+        <div flex>
+            <md-card>
+                <md-card-header>
+                    <md-card-avatar>
+                        <img class="md-user-avatar" ng-src="{{vm.post.user.avatar}}"/>
+                    </md-card-avatar>
+                    <md-card-header-text>
+                        <span class="md-title">{{vm.post.user.name}}</span>
+                        <span class="md-subhead">{{vm.post.dateCreate | date : 'dd.MM.yyyy HH:mm'}}</span>
+                    </md-card-header-text>
+                </md-card-header>
+                <img ng-src="{{vm.post.image}}" class="md-card-image" alt="{{vm.post.title}}">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline" class="pre">{{vm.post.title}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <pre class="pre">{{vm.post.body}}</pre>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="start center">
+                    <like-component post="vm.post"></like-component>
+                </md-card-actions>
+                <md-list>
+                    <md-list-item class="md-3-line md-long-text" ng-repeat="comment in vm.comments">
+                        <img ng-src="{{comment.user.avatar}}" class="md-avatar" alt="comment"/>
+                        <div class="md-list-item-text">
+                            <h3>{{ comment.user.name }}</h3>
+                            <h4>{{ comment.dateCreate | date : 'dd.MM.yyyy HH:mm' }}</h4>
+                            <p class="pre">{{comment.text}}</p>
+                        </div>
+                    </md-list-item>
+                </md-list>
+                <div ng-if="vm.Auth.isLoggedin" layout layout-padding>
+                    <form flex layout name="vm.commentForm" novalidate ng-submit="vm.addComment()">
+                        <md-input-container flex style="margin: 0;">
+                            <label>Ваш коментарий</label>
+                            <textarea ng-model="vm.comment.text" required></textarea>
+                        </md-input-container>
+                        <md-button class="md-icon-button md-primary" type="submit"
+                                   ng-disabled="vm.commentForm.$invalid">
+                            <md-icon md-svg-src="assets/images/send-button.svg"></md-icon>
+                        </md-button>
+                    </form>
+                </div>
+            </md-card>
+        </div>
+    </div>
+</md-content>

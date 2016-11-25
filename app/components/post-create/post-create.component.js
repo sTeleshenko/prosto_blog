@@ -8,8 +8,7 @@ app.component('postCreateComponent', {
             categoryId: 0,
             image: '',
             body: '',
-            likes: 0,
-            dislikes: 0
+            likes: []
         };
         vm.$onInit =function(){
             $http.get('http://localhost:3000/categories')
